@@ -3,7 +3,7 @@
 
 
 class Node:
-    def __init__(self, data) -> None:
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
@@ -85,6 +85,19 @@ class LinkedList:
     def check_index(self, index):
         if index >= self.length() or index < 0:
             raise IndexError("invalid index")
+        
+    def get_higher_element(self):
+        highest = self.head
+
+        current_index = 0
+        current_node = self.head
+        while current_node != None:
+            if current_node.data > highest.data:
+                highest = current_node
+            current_node = current_node.next
+            current_index += 1
+        return highest.data
+
 
     def __repr__(self) -> str:
         if self.head == None:
@@ -99,10 +112,13 @@ class LinkedList:
         return "[" + items + "]"
 
 
-node1 = "sergio"
-node2 = "ricardo"
-node3 = "césar"
-node4 = "Augusto"
+node1 = 7
+node2 = 4
+node3 = 3
+node4 = 1
+node4 = 12
+node5 = 10
+node6 = 9
 
 lista = LinkedList()
 
@@ -110,6 +126,9 @@ lista.append(node1)
 lista.append(node2)
 lista.append(node3)
 lista.append(node4)
+lista.append(node5)
+lista.append(node6)
 lista.reverse()
 lista.remove(0)
 print(lista)
+print(lista.get_higher_element())
